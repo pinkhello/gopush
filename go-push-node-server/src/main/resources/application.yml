@@ -1,0 +1,32 @@
+server:
+  port: ${random.int[6001,6999]}
+
+spring:
+  redis:
+    cluster:
+      nodes:
+        - 127.0.0.1:6379
+        - 127.0.0.1:6379
+
+go-push:
+  node-server:
+    name: NodeServer-${random.int(100)}
+    node-port: ${random.int[7001,7999]}
+    device-port: ${random.int[9001,9999]}
+    batch-processor:
+      delay: 1000
+      batch-size: 300
+      warn-threshold: 300
+      processor-size: 2
+      core-pool-size: 1
+
+  zookeeper:
+      servers: 192.168.99.100:32773
+      listen-namespace: namespace-data-center
+      namespace: namespace-node-server
+      session-timeout: 6000
+      connection-timeout: 6000
+      max-retries: 1000
+      retries-sleep-time: 2000
+
+

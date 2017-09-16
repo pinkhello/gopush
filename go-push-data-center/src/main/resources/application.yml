@@ -1,0 +1,38 @@
+
+server:
+  port: ${random.int[5001,5999]}
+
+spring:
+  redis:
+    cluster:
+      nodes:
+        - 127.0.0.1:6379
+        - 127.0.0.1:6379
+
+
+go-push:
+  data-center:
+    name: DataCenter-${random.int(100)}
+  zookeeper:
+      servers: 192.168.99.100:32773
+      listen-namespace: namespace-node-server
+      namespace: namespace-data-center
+      session-timeout: 6000
+      connection-timeout: 6000
+      max-retries: 1000
+      retries-sleep-time: 2000
+
+swagger:
+  title: GoPush Restful接口
+  description: ${swagger.title}文档说明
+  version: ${application.version}
+  license: GoPush 许可
+  license-url: https://gitee.com/openWolf/gopush/blob/master/LICENSE
+  terms-of-service-url: https://gitee.com/openWolf/gopush/issues/new
+  contact:
+    name: 喝咖啡的囊地鼠
+    url: https://gitee.com/openWolf/gopush
+    email: null_hello@qq.com
+  base-package: com.gopush.datacenter.restful
+  base-path:  /**
+  exclude-path: /error,/ops/**
