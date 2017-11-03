@@ -47,7 +47,7 @@ public class DataCenterDiscoveryService {
                     }
 
                     @Override
-                    public void ReconnectedEvent(CuratorFramework curator, ConnectionState state) {
+                    public void reconnectedEvent(CuratorFramework curator, ConnectionState state) {
                         log.info("DataCenterDiscovery 重新链接zk成功");
                     }
 

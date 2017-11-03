@@ -1,6 +1,8 @@
 package com.gopush.protocol.node;
 
-import lombok.*;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
 
 /**
  * go-push

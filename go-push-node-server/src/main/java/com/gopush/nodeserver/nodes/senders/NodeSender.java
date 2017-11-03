@@ -8,14 +8,20 @@ import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.Setter;
 import lombok.extern.slf4j.Slf4j;
+import org.apache.commons.lang3.concurrent.BasicThreadFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
-import org.springframework.util.StringUtils;
 
 import javax.annotation.PostConstruct;
 import javax.annotation.PreDestroy;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
+import java.util.Queue;
 import java.util.concurrent.ConcurrentLinkedQueue;
+import java.util.concurrent.ScheduledExecutorService;
+import java.util.concurrent.ScheduledThreadPoolExecutor;
+import java.util.concurrent.TimeUnit;
 
 /**
  * go-push
@@ -31,7 +37,9 @@ import java.util.concurrent.ConcurrentLinkedQueue;
 public class NodeSender implements INodeSender<NodeMessage> {
 
 
-    //保证了发往DataCenter的消息不丢失
+    /**
+     * 保证了发往DataCenter的消息不丢失
+     */
     private Queue<InnerMessageInfo> failMessage = new ConcurrentLinkedQueue<>();
 
     @Autowired
@@ -40,46 +48,49 @@ public class NodeSender implements INodeSender<NodeMessage> {
     @Setter
     private int delay = 2000;
 
-    private Timer timer;
+    private ScheduledExecutorService scheduledExecutorService;
 
     @PostConstruct
     public void init() {
-        timer = new Timer("SendNodeMessage-Fail-Retry");
-        timer.schedule(new TimerTask() {
-            @Override
-            public void run() {
-                try {
-                    if (failMessage.isEmpty()) {
-                        return;
-                    }
-                    failMessage.stream().forEach((e) -> {
-                        switch (e.getSt()) {
-                            case ZD:
-                                send(e.getDcId(), e.getMessage());
-                                break;
-                            case SJO:
-                                sendShuffle(e.getMessage());
-                                break;
-                            case ALL:
-                                send(e.getMessage());
-                                break;
-                        }
-                    });
 
-                } catch (Exception e) {
-                    log.error("Exception error:{}", e);
+
+        scheduledExecutorService = new ScheduledThreadPoolExecutor(1,
+                new BasicThreadFactory.Builder().namingPattern("SendNodeMessage-Fail-Retry-schedule-pool-%d").daemon(true).build());
+        scheduledExecutorService.scheduleAtFixedRate(() ->
+                {
+                    try {
+                        if (failMessage.isEmpty()) {
+                            return;
+                        }
+                        failMessage.stream().forEach((e) -> {
+                            switch (e.getSt()) {
+                                case ZD:
+                                    send(e.getDcId(), e.getMessage());
+                                    break;
+                                case SJO:
+                                    sendShuffle(e.getMessage());
+                                    break;
+                                case ALL:
+                                    send(e.getMessage());
+                                    break;
+                                default:
+                                    break;
+                            }
+                        });
+
+                    } catch (Exception e) {
+                        log.error("Exception error:{}", e);
+                    }
                 }
-            }
-        }, delay, delay);
+                , delay, delay, TimeUnit.MILLISECONDS);
+
+
     }
 
     @PreDestroy
     public void destory() {
         failMessage.clear();
-        if (timer != null) {
-            timer.cancel();
-            timer = null;
-        }
+
     }
 
 
@@ -160,6 +171,8 @@ public class NodeSender implements INodeSender<NodeMessage> {
             case ZD:
                 builder.dcId(dcId);
                 break;
+            default:
+                break;
         }
         InnerMessageInfo info = builder.build();
         if (failMessage.contains(info)) {
@@ -176,6 +189,8 @@ public class NodeSender implements INodeSender<NodeMessage> {
         switch (st) {
             case ZD:
                 builder.dcId(dcId);
+                break;
+            default:
                 break;
         }
         InnerMessageInfo info = builder.build();

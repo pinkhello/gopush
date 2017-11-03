@@ -57,7 +57,7 @@ public class NodeServerRegisterService {
                     }
 
                     @Override
-                    public void ReconnectedEvent(CuratorFramework curator, ConnectionState state) {
+                    public void reconnectedEvent(CuratorFramework curator, ConnectionState state) {
                         log.info("NodeServerRegister 重新链接zk成功");
                         registerNodeServer();
                     }

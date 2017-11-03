@@ -1,17 +1,18 @@
 package com.gopush.nodeserver.infos.watchdog;
 
 import com.gopush.common.utils.ip.IpUtils;
+import com.gopush.infos.nodeserver.bo.NodeLoaderInfo;
 import com.gopush.infos.nodeserver.bo.NodeServerInfo;
 import com.gopush.nodeserver.config.GoPushNodeServerConfig;
 import com.gopush.nodeserver.devices.BatchProcessor;
 import com.gopush.nodeserver.devices.stores.IDeviceChannelStore;
-import com.gopush.infos.nodeserver.bo.NodeLoaderInfo;
 import com.gopush.nodeserver.infos.watchdog.listener.event.NodeServerInfoEvent;
 import com.gopush.nodeserver.nodes.senders.INodeSender;
 import com.gopush.nodeserver.nodes.stores.IDataCenterChannelStore;
 import com.gopush.protocol.node.NodeInfoReq;
 import lombok.Setter;
 import lombok.extern.slf4j.Slf4j;
+import org.apache.commons.lang3.concurrent.BasicThreadFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationEventPublisher;
 import org.springframework.stereotype.Component;
@@ -19,10 +20,10 @@ import org.springframework.util.CollectionUtils;
 import org.springframework.util.StringUtils;
 
 import javax.annotation.PostConstruct;
-import javax.annotation.PreDestroy;
 import java.util.List;
-import java.util.Timer;
-import java.util.TimerTask;
+import java.util.concurrent.ScheduledExecutorService;
+import java.util.concurrent.ScheduledThreadPoolExecutor;
+import java.util.concurrent.TimeUnit;
 import java.util.stream.Collectors;
 
 /**
@@ -54,39 +55,33 @@ public class NodeServerInfoWatchdog {
     @Setter
     private int delay = 5000;
 
-    private Timer timer;
+    private ScheduledExecutorService scheduledExecutorService;
 
     @PostConstruct
     public void init() {
-        timer = new Timer("SendNodeServerInfo-Timer");
-        timer.schedule(new TimerTask() {
-            @Override
-            public void run() {
-                //将负载加载到ZK中
-                if (!CollectionUtils.isEmpty(dataCenterChannelStore.getAllChannels())){
-                    dataCenterChannelStore.getAllChannels().stream().forEach(e->{
-                        log.info("channel id:{}, {}",e.id(),e);
-                    });
-                }
-                applicationEventPublisher.publishEvent(
-                        NodeServerInfoEvent.builder()
-                                .name(goPushNodeServerConfig.getName())
-                                .nodeServerInfo(watch())
-                                .build());
+
+        scheduledExecutorService = new ScheduledThreadPoolExecutor(1,
+                new BasicThreadFactory.Builder().namingPattern("SendNodeServerInfo-schedule-pool-%d").daemon(true).build());
+        scheduledExecutorService.scheduleAtFixedRate(() ->
+                {
+                    //将负载加载到ZK中
+                    if (!CollectionUtils.isEmpty(dataCenterChannelStore.getAllChannels())) {
+                        dataCenterChannelStore.getAllChannels().stream().forEach(e -> {
+                            log.info("channel id:{}, {}", e.id(), e);
+                        });
+                    }
+                    applicationEventPublisher.publishEvent(
+                            NodeServerInfoEvent.builder()
+                                    .name(goPushNodeServerConfig.getName())
+                                    .nodeServerInfo(watch())
+                                    .build());
 //                写入zk 其实不需要发送 NodeInfoReq
-                nodeSender.send(NodeInfoReq.builder().build());
-            }
-        }, delay, delay);
+                    nodeSender.send(NodeInfoReq.builder().build());
+                }
+                , delay, delay, TimeUnit.MILLISECONDS);
+
     }
 
-
-    @PreDestroy
-    public void destory() {
-        if (timer != null) {
-            timer.cancel();
-            timer = null;
-        }
-    }
 
     /**
      * 获取系统负载信息

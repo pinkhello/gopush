@@ -29,7 +29,9 @@ import java.util.concurrent.ConcurrentHashMap;
 @Component
 public class NodeServerDiscoveryService {
 
-    //缓存的本地服务列表
+    /**
+     * 缓存的本地服务列表
+     */
     private Map<String, NodeServerInfo> nodeServerPool = new ConcurrentHashMap<>();
 
     @Autowired
@@ -60,7 +62,7 @@ public class NodeServerDiscoveryService {
                     }
 
                     @Override
-                    public void ReconnectedEvent(CuratorFramework curator, ConnectionState state) {
+                    public void reconnectedEvent(CuratorFramework curator, ConnectionState state) {
                         log.info("NodeServerDiscovery 重新链接zk成功");
                         initNodeServerDiscovery();
                     }
@@ -118,6 +120,8 @@ public class NodeServerDiscoveryService {
                     break;
                 case CHILD_UPDATED:
                     updateEvent(event);
+                    break;
+                default:
                     break;
             }
         }));

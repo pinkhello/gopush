@@ -1,8 +1,6 @@
 package com.gopush.nodeserver.devices.stores;
 
 import io.netty.channel.Channel;
-import lombok.Builder;
-import lombok.Data;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
 

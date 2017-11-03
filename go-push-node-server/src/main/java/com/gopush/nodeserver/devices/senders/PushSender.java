@@ -1,11 +1,8 @@
 package com.gopush.nodeserver.devices.senders;
 
 import com.gopush.nodeserver.devices.stores.IDeviceChannelStore;
-import com.gopush.protocol.device.DeviceMessage;
 import com.gopush.protocol.device.PushReq;
 import io.netty.channel.Channel;
-import lombok.Builder;
-import lombok.Data;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;

@@ -1,7 +1,7 @@
 package com.gopush.nodeserver.devices.inbound;
 
 import com.gopush.devices.handlers.IDeviceMessageHandler;
-import com.gopush.nodeserver.devices.handlers.*;
+import com.gopush.nodeserver.devices.handlers.DeviceDeviceDisconnectHandler;
 import com.gopush.protocol.device.DeviceMessage;
 import com.gopush.protocol.device.Ping;
 import io.netty.channel.ChannelHandler;
@@ -13,9 +13,6 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import javax.annotation.PostConstruct;
-import javax.annotation.PreDestroy;
-import java.util.ArrayList;
 import java.util.List;
 
 

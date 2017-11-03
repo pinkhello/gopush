@@ -1,7 +1,7 @@
 package com.gopush.nodeserver.infos.watchdog.listener;
 
-import com.gopush.nodeserver.infos.watchdog.listener.event.NodeServerInfoEvent;
 import com.gopush.nodeserver.dymic.register.NodeServerRegisterService;
+import com.gopush.nodeserver.infos.watchdog.listener.event.NodeServerInfoEvent;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.event.EventListener;

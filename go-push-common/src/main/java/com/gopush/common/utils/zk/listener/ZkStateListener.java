@@ -12,7 +12,7 @@ public interface ZkStateListener {
     default void connectedEvent(CuratorFramework curator, ConnectionState state) {
     }
 
-    default void ReconnectedEvent(CuratorFramework curator, ConnectionState state) {
+    default void reconnectedEvent(CuratorFramework curator, ConnectionState state) {
     }
 
     default void lostEvent(CuratorFramework curator, ConnectionState state) {

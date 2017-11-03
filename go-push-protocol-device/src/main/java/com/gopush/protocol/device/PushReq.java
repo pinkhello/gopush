@@ -1,7 +1,10 @@
 package com.gopush.protocol.device;
 
 import com.alibaba.fastjson.annotation.JSONField;
-import lombok.*;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import java.util.List;
 

@@ -14,7 +14,6 @@ import org.apache.curator.framework.state.ConnectionState;
 import org.apache.curator.utils.ZKPaths;
 import org.apache.zookeeper.CreateMode;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.core.annotation.Order;
 import org.springframework.stereotype.Component;
 
 import javax.annotation.PostConstruct;
@@ -59,7 +58,7 @@ public class DataCenterRegisterService {
                     }
 
                     @Override
-                    public void ReconnectedEvent(CuratorFramework curator, ConnectionState state) {
+                    public void reconnectedEvent(CuratorFramework curator, ConnectionState state) {
                         log.info("DataCenterRegister 重新链接zk成功");
                         registerDataCenter();
                     }
