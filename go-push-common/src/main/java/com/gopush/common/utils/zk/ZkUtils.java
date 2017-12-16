@@ -305,7 +305,7 @@ public class ZkUtils {
             if (stat != null) {
                 PathChildrenCache watcher = new PathChildrenCache(zkClient, path, true);
                 watcher.start(PathChildrenCache.StartMode.POST_INITIALIZED_EVENT);
-                //该模式下 watcher在重连的时候会自动 rebuild
+                //该模式下 watcher在重连的时候会自动 rebuild 否则需要重新rebuild
                 watcher.getListenable().addListener(biConsumer::accept, pool);
                 if (!pathChildrenCaches.contains(watcher)) {
                     pathChildrenCaches.add(watcher);
