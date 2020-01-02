@@ -12,6 +12,8 @@
 - 码云: https://gitee.com/openWolf/gopush
 
 
+[![Stargazers over time](https://starchart.cc/PinkHello/GoPush.svg)](https://starchart.cc/PinkHello/GoPush)
+
 **技术架构图**
 ![技术架构图](https://git.oschina.net/uploads/images/2017/0627/092129_ddd20f29_7872.png "技术架构图")
 
