@@ -8,7 +8,7 @@
 > * 不存在单点问题
 > * 拓展开可以做成客服、聊天、推送等诸多系统
 
-- Github: https://github.com/lee123lee123/GoPush
+- Github: https://github.com/pinkhello/gopush
 - 码云: https://gitee.com/openWolf/gopush
 
 
