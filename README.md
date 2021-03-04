@@ -1,4 +1,6 @@
-
+** 项目地址 **
+- ![Github](https://github.com/pinkhello/gopush)
+- ![Gitee](https://gitee.com/openWolf/gopush)
   <p align="center">
      <a href="https://github.com/pinkhello/gopush">
       <img alt="Stars" src="https://img.shields.io/github/stars/pinkhello/gopush?color=0088ff" />
@@ -24,8 +26,6 @@
 > * 不存在单点问题
 > * 拓展开可以做成客服、聊天、推送等诸多系统
 
-- Github: https://github.com/pinkhello/gopush
-- 码云: https://gitee.com/openWolf/gopush
 
 
 [![Stargazers over time](https://starchart.cc/PinkHello/GoPush.svg)](https://starchart.cc/PinkHello/GoPush)
