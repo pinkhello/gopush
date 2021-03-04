@@ -1,35 +1,15 @@
-## GoPush ![](https://img.shields.io/github/stars/pinkhello/gopush?color=0088ff) | ![](https://img.shields.io/github/forks/pinkhello/gopush?color=0088ff) | ![](https://img.shields.io/github/issues/pinkhello/gopush?color=0088ff)
+## GoPush ![](https://img.shields.io/github/stars/pinkhello/gopush?color=0088ff) ![](https://img.shields.io/github/forks/pinkhello/gopush?color=0088ff) ![](https://img.shields.io/github/issues/pinkhello/gopush?color=0088ff) ![](https://img.shields.io/github/issues-pr/pinkhello/gopush?color=0088ff)
 
-## 项目地址
+## Project Repertories
 - [Github](https://github.com/pinkhello/gopush)
 - [Gitee](https://gitee.com/openWolf/gopush)
-
-  <p align="center">
-     <a href="https://github.com/pinkhello/gopush">
-      <img alt="Stars" src="https://img.shields.io/github/stars/pinkhello/gopush?color=0088ff" />
-    </a>
-     <a href="https://github.com/pinkhello/gopush">
-      <img alt="Forks" src="https://img.shields.io/github/forks/pinkhello/gopush?color=0088ff" />
-    </a>
-    <a href="https://github.com/pinkhello/gopush/issues">
-      <img alt="Issues" src="https://img.shields.io/github/issues/pinkhello/gopush?color=0088ff" />
-    </a>
-    <a href="https://github.com/pinkhello/gopush/pulls">
-      <img alt="GitHub pull requests" src="https://img.shields.io/github/issues-pr/pinkhello/gopush?color=0088ff" />
-    </a>
-  </p>
   
+## Depends
+> `Netty`、`Zookeeper`、`Redis`
+> `Java8`、`SpringBoot`
 
-> **GoPush**是开源的分布式推送消息服务.
-> * 基于**netty**开发
-> * 依赖**redis**
-> * 依赖**Java8**
-> * 依赖**SpringBoot**
-> * 依赖**Zookeeper**
-> * 不存在单点问题
-> * 拓展开可以做成客服、聊天、推送等诸多系统
-
-
+## Description
+Suitable for customer service, IM, and Iot ...... 
 
 [![Stargazers over time](https://starchart.cc/PinkHello/GoPush.svg)](https://starchart.cc/PinkHello/GoPush)
 
