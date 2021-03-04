@@ -9,6 +9,9 @@
     <a href="https://github.com/pinkhello/gopush/issues">
       <img alt="Issues" src="https://img.shields.io/github/issues/pinkhello/gopush?color=0088ff" />
     </a>
+     <a href="https://github.com/pinkhello/gopush">
+      <img alt="Issues" src="https://img.shields.io/github/stars/pinkhello/gopush?color=0088ff" />
+    </a>
     <a href="https://github.com/pinkhello/gopush/pulls">
       <img alt="GitHub pull requests" src="https://img.shields.io/github/issues-pr/pinkhello/gopush?color=0088ff" />
     </a>
@@ -20,14 +23,6 @@
     <a href="https://a.paddle.com/v2/click/16413/119403?link=2345">
       <img src="https://img.shields.io/badge/Supported%20by-Node%20Cli.com%20%E2%86%92-gray.svg?colorA=61c265&colorB=4CAF50&style=for-the-badge"/>
     </a>
-  </p>
-
-  <p align="center">
-    <a href="#demo">View Demo</a>
-    ·
-    <a href="https://github.com/anuraghazra/github-readme-stats/issues/new/choose">Report Bug</a>
-    ·
-    <a href="https://github.com/anuraghazra/github-readme-stats/issues/new/choose">Request Feature</a>
   </p>
   
 **GoPush**
