@@ -11,6 +11,8 @@
 ## Description
 Suitable for customer service, IM, and Iot ...... 
 
+[![Stargazers repo roster for @pinkhello/GoPush](https://reporoster.com/stars/pinkhello/GoPush)](https://github.com/pinkhello/GoPush/stargazers)
+
 [![Stargazers over time](https://starchart.cc/PinkHello/GoPush.svg)](https://starchart.cc/PinkHello/GoPush)
 
 ## Frames
