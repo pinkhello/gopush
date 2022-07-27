@@ -11,9 +11,13 @@
 ## Description
 Suitable for customer service, IM, and Iot ...... 
 
-[![Stargazers repo roster for @pinkhello/GoPush](https://reporoster.com/stars/pinkhello/GoPush)](https://github.com/pinkhello/GoPush/stargazers)
+[![Stargazers repo roster for @pinkhello/gopush](https://reporoster.com/stars/pinkhello/gopush)](https://github.com/pinkhello/gopush/stargazers)
 
-[![Stargazers over time](https://starchart.cc/PinkHello/GoPush.svg)](https://starchart.cc/PinkHello/GoPush)
+
+## Stargazers over time
+
+[![Stargazers over time](https://starchart.cc/pinkhello/gopush.svg)](https://starchart.cc/pinkhello/gopush)
+
 
 ## Frames
 ![技术架构图](https://git.oschina.net/uploads/images/2017/0627/092129_ddd20f29_7872.png "技术架构图")
